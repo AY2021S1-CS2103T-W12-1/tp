@@ -1,12 +1,10 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.PriorityQueue;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.person.Person;
 
 /**
@@ -86,19 +84,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
-    /**
-     * Returns Priority Queue of rooms
-     */
-    PriorityQueue<Room> getRooms();
-
-    /**
-     * Returns total number of rooms in a hotel
-     */
-    int getNumOfRooms();
-
-    /**
-     * Returns Path of file that contains number of rooms
-     */
-    public Path getPathOfNumberOfRooms();
 }

@@ -9,7 +9,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.PriorityQueue;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -151,21 +149,6 @@ public class AddPatientCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public PriorityQueue<Room> getRooms() {
-            return null;
-        }
-
-        @Override
-        public int getNumOfRooms() {
-            return 0;
-        }
-
-        @Override
-        public Path getPathOfNumberOfRooms() {
-            return null;
-        }
     }
 
     /**
@@ -208,11 +191,5 @@ public class AddPatientCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
-
-        @Override
-        public Path getPathOfNumberOfRooms() {
-            return null;
-        }
-
     }
 }

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.PriorityQueue;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,14 +21,12 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final RoomBook readOnlyRoomOccupancy;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        RoomBook readOnlyRoomOccupancy) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -38,12 +34,11 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.readOnlyRoomOccupancy = readOnlyRoomOccupancy;
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new RoomBook());
+        this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -153,17 +148,4 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
-    //=========== RoomBook =============================================================
-
-    public PriorityQueue<Room> getRooms() {
-        return this.readOnlyRoomOccupancy.getRooms();
-    }
-
-    public int getNumOfRooms() {
-        return this.readOnlyRoomOccupancy.getNumOfRooms();
-    }
-
-    public Path getPathOfNumberOfRooms() {
-        return readOnlyRoomOccupancy.getFileNumOfRooms();
-    }
 }
